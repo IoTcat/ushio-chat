@@ -1,0 +1,327 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Ushio Chat</title>
+<link media="none" onload="this.media='all'" href="https://cdn.yimian.xyz/cv/css/bootstrap.css" rel='stylesheet' type='text/css' />
+<!-- Custom Theme files -->
+ <link media="none" onload="this.media='all'" href="https://cdn.yimian.xyz/cv/css/dashboard.css" rel="stylesheet">
+<link href="https://cdn.yimian.xyz/cv/css/style.css" rel='stylesheet' type='text/css' />
+<script src='https://cdn.yimian.xyz/kayo/lib/valine/valine.min.js'></script>
+<script type="text/javascript">block_aplayer = true;lang = ['en'];</script>
+  <script src="https://cdn.yimian.xyz/ushio-js/ushio-head.min.js"></script>
+  <script type="text/javascript">page.proj = 'iotcat/ushio-chat'</script>
+<!-- Custom Theme files -->
+<!--//theme-style-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Curriculum Vitae Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<link media="none" onload="this.media='all'" href='https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700' rel='stylesheet' type='text/css'>
+<link media="none" onload="this.media='all'" href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+<!-- start menu -->
+ <style>
+/* 背景图片 */
+#veditor {
+  background-image: url(https://cdn.yimian.xyz/img/blog/comments_bg.webp);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: right;
+  background-color: rgba(255, 255, 255, 0);
+  resize: vertical
+}
+
+/* 头像旋转 */
+img.vimg {
+  transition: all 1s   /* 旋转时间为 1s */
+}
+img.vimg:hover {
+  transform: rotate(360deg);
+  -webkit-transform: rotate(360deg);
+  -moz-transform: rotate(360deg);
+  -o-transform: rotate(360deg);
+  -ms-transform: rotate(360deg);
+}
+
+
+/* 盒子模式 */
+#vcomments .vcards .vcard {
+  padding: 15px 20px 0 20px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  box-shadow: 0 0 4px 1px rgba(0, 0, 0, .12);
+  transition: all .3s
+}
+
+#vcomments .vcards .vcard:hover {
+  box-shadow: 0 0 8px 3px rgba(0, 0, 0, .12)
+}
+
+#vcomments .vcards .vcard .vh .vcard {
+  border: none;
+  box-shadow: none;
+}
+
+
+</style>
+<script>
+   var roomid = 'default'; 
+   var lastChangeTime = 0;
+   if(page.params.hasOwnProperty('id')){
+    roomid = page.params.id;
+   }
+   $.get('/getLastChangeTime.php?id='+roomid, (res)=>{
+        if(res) lastChangeTime = Number(res);       
+    });
+
+</script>
+</head>
+<body>
+<!-- header -->
+<div class="col-sm-3 col-md-2 sidebar">
+		 <div class="sidebar_top">
+       <h1><a href="https://chat.yimian.xyz/">Ushio Chat</a></h1> 
+		 
+       <p><a href="#" onClick="window.location.reload()">➦Refresh this page</a></p>
+       <p><a href="#" id="createNewRoom">➦Create new room</a></p>
+   
+        </div>
+		<div class="details">
+        <h3>Room Info</h3>
+        <p>Room ID: <a href="#" id="copy"><script>document.write(roomid)</script></a> 
+            <br>Room URL: <a href="#" id="copy2"><script>document.write('http://eee.dog/c/'+roomid)</script></a> 
+            <br>Room QR Code: 
+        <div id="qrcode"></div>
+		</div>
+		<div class="clearfix"></div>
+</div>
+<!---->
+<link media="none" onload="this.media='all'" href="https://cdn.yimian.xyz/cv/css/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
+<script src="https://cdn.yimian.xyz/cv/js/jquery.magnific-popup.js" type="text/javascript"></script>
+	<!---//pop-up-box---->			
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+	 <div class="content">
+		 <div class="company contact-grid">
+			 <h3 class="clr1">Chat Room</h3>
+            <div class="details_header">
+             <br>
+                <ul>
+                    <li><a target="_blank" href="https://imgbed.yimian.xyz/"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span>Upload Image</a></li>
+                    <li><a target="_blank" href="https://share.yimian.xyz/"><span class="glyphicon glyphicon-file" aria-hidden="true"></span>Upload File</a></li>
+                </ul>
+            </div>
+			 <form>	
+
+					<div id="vcomments"></div>
+			 </form>
+			     
+    <script>
+
+    $.get('https://auth.yimian.xyz/getEmailHash.php', function(res){
+        new Valine({
+            el: '#vcomments',
+            appId: 'NNzzWrBIfMu9EYhr9ssX8QKy-gzGzoHsz',
+            appKey: 'gDKN4N5jrRDPC6oeuId84NI6',
+            meta: ['nick', 'mail'],
+            pageSize: 9999,
+            master: '9b616ff4cd6c305e5970bee7b1bd9b1f',   //博主邮箱md5
+            tagMeta: ["master","friend","visitor"],     //标识字段名
+            friends: res, //[{{ theme.valine.friendsEmailMd5 }}],  //小伙伴邮箱Md5
+            lang:'en',
+            placeholder: "Please leave your message here (●'◡'●)\nP.S. To share images or files, use the above buttons to convert them into URL and then paste the URL here..",
+            path: '/?id='+roomid,
+            enableQQ: true,
+            recordIP: true,
+            emojiCDN: '//i0.hdslb.com/bfs/emote/',
+            emojiMaps: {
+                "tv_doge": "6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png",
+                "tv_亲亲": "a8111ad55953ef5e3be3327ef94eb4a39d535d06.png",
+                "tv_偷笑": "bb690d4107620f1c15cff29509db529a73aee261.png",
+                "tv_再见": "180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png",
+                "tv_冷漠": "b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png",
+                "tv_发怒": "34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png",
+                "tv_发财": "34db290afd2963723c6eb3c4560667db7253a21a.png",
+                "tv_可爱": "9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png",
+                "tv_吐血": "09dd16a7aa59b77baa1155d47484409624470c77.png",
+                "tv_呆": "fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png",
+                "tv_呕吐": "9f996894a39e282ccf5e66856af49483f81870f3.png",
+                "tv_困": "241ee304e44c0af029adceb294399391e4737ef2.png",
+                "tv_坏笑": "1f0b87f731a671079842116e0991c91c2c88645a.png",
+                "tv_大佬": "093c1e2c490161aca397afc45573c877cdead616.png",
+                "tv_大哭": "23269aeb35f99daee28dda129676f6e9ea87934f.png",
+                "tv_委屈": "d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png",
+                "tv_害羞": "a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png",
+                "tv_尴尬": "7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png",
+                "tv_微笑": "70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png",
+                "tv_思考": "90cf159733e558137ed20aa04d09964436f618a1.png",
+                "tv_惊吓": "0d15c7e2ee58e935adc6a7193ee042388adc22af.png",
+                "tv_打脸": "56ab10b624063e966bfcb76ea5dc4794d87dfd47.png",
+                "tv_抓狂": "fe31c08edad661d63762b04e17b8d5ae3c71a757.png",
+                "tv_抠鼻": "c666f55e88d471e51bbd9fab9bb308110824a6eb.png",
+                "tv_斜眼笑": "911f987aa8bc1bee12d52aafe62bc41ef4474e6c.png",
+                "tv_无奈": "ea8ed89ee9878f2fece2dda0ea8a5dbfe21b5751.png",
+                "tv_晕": "5443c22b4d07fb1907ccc610c8e6db254f2461b7.png",
+                "tv_流汗": "cead1c351ab8d79e9f369605beb90148db0fbed3.png",
+                "tv_流泪": "7e71cde7858f0cd50d74b0264aa26db612a8a167.png",
+                "tv_流鼻血": "c32d39db2737f89b904ca32700d140a9241b0767.png",
+                "tv_点赞": "f85c354995bd99e28fc76c869bfe42ba6438eff4.png",
+                "tv_生气": "26702dcafdab5e8225b43ffd23c94ac1ff932654.png",
+                "tv_生病": "8b0ec90e6b86771092a498c54f09fc94621c1900.png",
+                "tv_疑问": "0793d949b18d7be716078349c202c15ff166f314.png",
+                "tv_白眼": "c1d59f439e379ee50eef488bcb5e5378e5044ea4.png",
+                "tv_皱眉": "72ccad6679fea0d14cce648b4d818e09b8ffea2d.png",
+                "tv_目瞪口呆": "0b8cb81a68de5d5365212c99375e7ace3e7891b7.png",
+                "tv_睡着": "8b196675b53af58264f383c50ad0945048290b33.png",
+                "tv_笑哭": "1abc628f6d4f4caf9d0e7800878f4697abbc8273.png",
+                "tv_腼腆": "89712c0d4af73e67f89e35cbc518420380a7f6f4.png",
+                "tv_色": "61822c7e9aae5da76475e7892534545336b23a6f.png",
+                "tv_调侃": "4bc022533ef31544ca0d72c12c808cf4a1cce3e3.png",
+                "tv_调皮": "b9c41de8e82dd7a8515ae5e3cb63e898bf245186.png",
+                "tv_鄙视": "6e72339f346a692a495b123174b49e4e8e781303.png",
+                "tv_闭嘴": "c9e990da7f6e93975e25fd8b70e2e290aa4086ef.png",
+                "tv_难过": "87f46748d3f142ebc6586ff58860d0e2fc8263ba.png",
+                "tv_馋": "fc7e829b845c43c623c8b490ee3602b7f0e76a31.png",
+                "tv_鬼脸": "0ffbbddf8a94d124ca2f54b360bbc04feb6bbfea.png",
+                "tv_黑人问号": "45821a01f51bc867da9edbaa2e070410819a95b2.png",
+                "tv_鼓掌": "1d21793f96ef4e6f48b23e53e3b9e42da833a0f6.png"
+                // ... 更多表情
+            } 
+        });
+        $("input[name='nick']").attr('placeholder', 'NickName');
+        $("input[name='mail']").attr('placeholder', 'Email');
+        $('.vsubmit').click(function(){
+            $.get('https://chat.yimian.xyz/setLastChangeTime.php?id='+roomid);        
+            $.get('/getLastChangeTime.php?id='+roomid, (res)=>{
+                if(res) lastChangeTime = Number(res);       
+            });
+        });
+        session.onload(function(){
+            if(session.get('nickname')) $("input[name='nick']").attr('value', session.get('nickname'));
+            if(session.get('email')) $("input[name='mail']").attr('value', session.get('email'));
+
+            setInterval(()=>{
+                $.get('/getLastChangeTime.php?id='+roomid, (res)=>{
+                        if(res){
+                            res = Number(res);
+                            if(res > lastChangeTime){
+                                tips.info({
+                                    title: 'Update',
+                                    position: 'topRight',
+                                    timeout: 2000000,
+                                    message: 'New message!! Please click the button to refresh!!',
+                                    buttons: [['<button>Refresh</button>', function (instance, toast) {
+                                        window.location.reload();
+                                        instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+                                    }, true]]
+                                }); 
+                                lastChangeTime = res;       
+                            }
+                        }
+                });
+            }, 5000);            
+
+        });
+    });
+    </script>
+		 </div>
+		 <div class="copywrite">
+			 <p>&copy; 2020-<script type="text/javascript">document.write(new Date().getFullYear())</script> <a href="https://iotcat.me/">IoTcat</a> | Powered by <a href="https://ushio.cool/">Ushio</a> | <a href="https://github.com/IoTcat/ushio-chat">Github</a> </p>
+		 </div>
+	 </div>
+</div>
+<!---->
+<script src="./qrcode.min.js"></script>
+<script src="https://cdn.yimian.xyz/ushio-js/ushio-footer.min.js"></script>
+<script>
+
+				var qrcode = new QRCode("qrcode", {
+				    text: '',
+				    width: 100,
+				    height: 100,
+				    colorDark : "#000000",
+				    colorLight : "#ffffff",
+				    correctLevel : QRCode.CorrectLevel.M
+				});
+
+                qrcode.makeCode('http://eee.dog/c/'+roomid)
+
+    $('#createNewRoom').click(function(){
+        var id = $.md5(new Date().valueOf()+''+Math.random());        
+        id = id.substring(0, 4);
+
+        window.location.href='https://chat.yimian.xyz/?id='+id;
+    });
+
+
+
+
+
+window.Clipboard = (function(window, document, navigator) {
+  var textArea,
+      copy;
+
+  // 判断是不是ios端
+  function isOS() {
+    return navigator.userAgent.match(/ipad|iphone/i);
+  }
+  //创建文本元素
+  function createTextArea(text) {
+    textArea = document.createElement('textArea');
+    textArea.value = text;
+    document.body.appendChild(textArea);
+  }
+  //选择内容
+  function selectText() {
+    var range,
+        selection;
+
+    if (isOS()) {
+      range = document.createRange();
+      range.selectNodeContents(textArea);
+      selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
+      textArea.setSelectionRange(0, 999999);
+    } else {
+      textArea.select();
+    }
+  }
+
+
+
+
+  function copyToClipboard() {        
+    try{
+      if(document.execCommand("Copy")){
+        alert("Room URL copy successfully!");  
+      }else{
+        alert("Copy Unsucessfully!");
+      }
+    }catch(err){
+      alert("Copy unsucessfully!")
+    }
+    document.body.removeChild(textArea);
+  }
+
+  copy = function(text) {
+    createTextArea(text);
+    selectText();
+    copyToClipboard();
+  };
+
+  return {
+    copy: copy
+  };
+})(window, document, navigator);
+
+
+$('#copy').click(()=>{
+    Clipboard.copy('http://eee.dog/c/'+roomid);        
+});
+
+$('#copy2').click(()=>{
+    Clipboard.copy('http://eee.dog/c/'+roomid);        
+});
+</script>
+</body>
+</html>
